@@ -16,8 +16,8 @@ void draw(){
 	float sec, min, hou; //秒、分、時間
 	float sRange = 100.0;//秒の円周の半径
 	float mRage = 60.0;//分の円周の半径
-	int hx = 683;//時間の円のx座標
-	int hy = 384;//時間の円のy座標
+	int hx = displayWidth / 2;//ディスプレイの中心のx座標
+	int hy = displayHeight / 2;//ディスプレイの中心のy座標
 
 
 }
