@@ -21,20 +21,34 @@ public class uhr extends PApplet {
 //-1\u5206\u3054\u3068\u306e\u79d2\u306e\u8aa4\u5dee\u306e\u4fee\u6b63
 //-\u524d\u306b\u63cf\u753b\u3057\u305f\u5186\u3092\u6d88\u53bb\u3059\u308b\u30a2\u30eb\u30b4\u30ea\u30ba\u30e0
 
+int ang = 360;
 
 public void setup(){
 	size(displayWidth, displayHeight);
 	colorMode(RGB);
 	background(0, 0, 0);
+	smooth();
+	//stroke(255, 255, 255);
 }
 
 public void draw(){
-	float sec, min, hou; //\u79d2\u3001\u5206\u3001\u6642\u9593
-	float sRange = 100.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
+	float sec, min, hou;//\u79d2\u3001\u5206\u3001\u6642\u9593
+	float sRange = 340.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
 	float mRage = 60.0f;//\u5206\u306e\u5186\u5468\u306e\u534a\u5f84
-	int hx = displayWidth / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ex\u5ea7\u6a19
-	int hy = displayHeight / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ey\u5ea7\u6a19
+	float hx = displayWidth / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ex\u5ea7\u6a19
+	float hy = displayHeight / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ey\u5ea7\u6a19
+	float sRad; //\u7b97\u51fa\u3057\u305f\u89d2\u5ea6\u3092\u683c\u7d0d\u3059\u308b(\u79d2\u5186\u7528)
+	float mRad;	//\u7b97\u51fa\u3057\u305f\u89d2\u5ea6\u3092\u683c\u7d0d\u3059\u308b(\u5206\u5186\u7528)
 
+	sec = second();
+	min = minute() + (sec/60.0f);
+	hou = hour() % 12.0f + (min/60.0f);
+
+	sRad = (360 * (sec - 15) / 60) * -1;//\u79d2\u306e\u89d2\u5ea6\u5c0e\u51fa\u5f0f
+
+	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 8 * PI, 8 * PI);
+
+	println("Now time : "+hou+":"+min+":"+sec);
 
 }
   static public void main(String[] passedArgs) {
