@@ -28,16 +28,16 @@ public void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	smooth();
-	PFont uhr = createFont("AlvelNeo", 60.0f);
-  	textFont(uhr);
+	PFont uhr = loadFont("AgencyFB-Reg-18.vlw");
+  	textFont(uhr, 21);
 }
 
 public void draw(){
 	float sec, min, hou;//\u79d2\u3001\u5206\u3001\u6642\u9593
+	int s, m ,h;//\u30ad\u30e3\u30b9\u30c8\u3057\u3066\u8868\u793a\u3059\u308b\u305f\u3081\u306e
 	float sRange = 300.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
 	float mRage = 60.0f;//\u5206\u306e\u5186\u5468\u306e\u534a\u5f84
-	float hx = displayWidth / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ex\u5ea7\u6a19
-	float hy = displayHeight / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ey\u5ea7\u6a19
+	float hx = displayWidth / 2, hy = displayHeight / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u5ea7\u6a19
 	float sRad; //\u7b97\u51fa\u3057\u305f\u89d2\u5ea6\u3092\u683c\u7d0d\u3059\u308b(\u79d2\u5186\u7528)
 	float mRad;	//\u7b97\u51fa\u3057\u305f\u89d2\u5ea6\u3092\u683c\u7d0d\u3059\u308b(\u5206\u5186\u7528)
 
@@ -47,9 +47,18 @@ public void draw(){
 
 	sRad = (360 * (sec - 15) / 60) * -1;//\u79d2\u306e\u89d2\u5ea6\u5c0e\u51fa\u5f0f
 
-	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 8 * PI, 8 * PI);
+	s = PApplet.parseInt(sec);
 
-	println("Now time : "+hou+":"+min+":"+sec);
+	fill(255, 255, 255);
+	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 10 * PI, 10 * PI);
+	noFill();
+
+	fill(0, 0, 0);
+	text(s, sin(radians(sRad + 90)) * sRange + hx - 7, cos(radians(sRad + 90)) * sRange + hy + 8.5f);
+	noFill();
+	
+
+	println("Now time : "+hou+":"+min+":"+s);
 
 }
   static public void main(String[] passedArgs) {

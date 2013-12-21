@@ -12,16 +12,16 @@ void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	smooth();
-	PFont uhr = createFont("AlvelNeo", 60.0);
-  	textFont(uhr);
+	PFont uhr = loadFont("AgencyFB-Reg-18.vlw");
+  	textFont(uhr, 21);
 }
 
 void draw(){
 	float sec, min, hou;//秒、分、時間
+	int s, m ,h;//キャストして表示するための
 	float sRange = 300.0;//秒の円周の半径
 	float mRage = 60.0;//分の円周の半径
-	float hx = displayWidth / 2;//ディスプレイの中心のx座標
-	float hy = displayHeight / 2;//ディスプレイの中心のy座標
+	float hx = displayWidth / 2, hy = displayHeight / 2;//ディスプレイの中心座標
 	float sRad; //算出した角度を格納する(秒円用)
 	float mRad;	//算出した角度を格納する(分円用)
 
@@ -31,8 +31,17 @@ void draw(){
 
 	sRad = (360 * (sec - 15) / 60) * -1;//秒の角度導出式
 
-	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 8 * PI, 8 * PI);
+	s = int(sec);
 
-	println("Now time : "+hou+":"+min+":"+sec);
+	fill(255, 255, 255);
+	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 10 * PI, 10 * PI);
+	noFill();
+
+	fill(0, 0, 0);
+	text(s, sin(radians(sRad + 90)) * sRange + hx - 7, cos(radians(sRad + 90)) * sRange + hy + 8.5);
+	noFill();
+	
+
+	println("Now time : "+hou+":"+min+":"+s);
 
 }
