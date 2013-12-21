@@ -12,12 +12,13 @@ void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	smooth();
-	//stroke(255, 255, 255);
+	PFont uhr = createFont("AlvelNeo", 60.0);
+  	textFont(uhr);
 }
 
 void draw(){
 	float sec, min, hou;//秒、分、時間
-	float sRange = 340.0;//秒の円周の半径
+	float sRange = 300.0;//秒の円周の半径
 	float mRage = 60.0;//分の円周の半径
 	float hx = displayWidth / 2;//ディスプレイの中心のx座標
 	float hy = displayHeight / 2;//ディスプレイの中心のy座標
