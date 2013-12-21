@@ -28,12 +28,13 @@ public void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	smooth();
-	//stroke(255, 255, 255);
+	PFont uhr = createFont("Gabriola", 60);
+	textFont(uhr);
 }
 
 public void draw(){
 	float sec, min, hou;//\u79d2\u3001\u5206\u3001\u6642\u9593
-	float sRange = 340.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
+	float sRange = 300.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
 	float mRage = 60.0f;//\u5206\u306e\u5186\u5468\u306e\u534a\u5f84
 	float hx = displayWidth / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ex\u5ea7\u6a19
 	float hy = displayHeight / 2;//\u30c7\u30a3\u30b9\u30d7\u30ec\u30a4\u306e\u4e2d\u5fc3\u306ey\u5ea7\u6a19
@@ -44,9 +45,12 @@ public void draw(){
 	min = minute() + (sec/60.0f);
 	hou = hour() % 12.0f + (min/60.0f);
 
-	sRad = (360 * (sec - 15) / 60) * -1;//\u79d2\u306e\u89d2\u5ea6\u5c0e\u51fa\u5f0f
+	sRad = (360 * (sec - 15) / 60) * -1;//\u79d2\u5186\u306e\u89d2\u5ea6\u5c0e\u51fa\u5f0f
 
-	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 8 * PI, 8 * PI);
+	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 20 * PI, 20 * PI);
+	
+
+
 
 	println("Now time : "+hou+":"+min+":"+sec);
 
