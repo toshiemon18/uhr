@@ -21,8 +21,6 @@ public class uhr extends PApplet {
 //-1\u5206\u3054\u3068\u306e\u79d2\u306e\u8aa4\u5dee\u306e\u4fee\u6b63
 //-\u524d\u306b\u63cf\u753b\u3057\u305f\u5186\u3092\u6d88\u53bb\u3059\u308b\u30a2\u30eb\u30b4\u30ea\u30ba\u30e0
 
-int ang = 360;
-
 public void setup(){
 	size(displayWidth, displayHeight);
 	colorMode(RGB);
@@ -47,7 +45,7 @@ public void draw(){
 
 	sRad = (360 * (sec - 15) / 60) * -1;//\u79d2\u306e\u89d2\u5ea6\u5c0e\u51fa\u5f0f
 
-	s = PApplet.parseInt(sec);
+	s = PApplet.parseInt(sec);//\u79d2\u3092float\u304b\u3089int\u3078\u30b3\u30f3\u30d0\u30fc\u30c8
 
 	fill(255, 255, 255);
 	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 10 * PI, 10 * PI);

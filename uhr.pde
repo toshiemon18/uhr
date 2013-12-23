@@ -5,8 +5,6 @@
 //-1分ごとの秒の誤差の修正
 //-前に描画した円を消去するアルゴリズム
 
-int ang = 360;
-
 void setup(){
 	size(displayWidth, displayHeight);
 	colorMode(RGB);
@@ -31,7 +29,7 @@ void draw(){
 
 	sRad = (360 * (sec - 15) / 60) * -1;//秒の角度導出式
 
-	s = int(sec);
+	s = int(sec);//秒をfloatからintへコンバート
 
 	fill(255, 255, 255);
 	ellipse(sin(radians(sRad + 90)) * sRange + hx, cos(radians(sRad + 90)) * sRange + hy, 10 * PI, 10 * PI);
