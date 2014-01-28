@@ -15,7 +15,13 @@ import java.io.IOException;
 public class uhr extends PApplet {
 
 //\u5186\u3092\u4f7f\u3063\u3066\u3050\u308b\u3050\u308b\u56de\u3057\u3066\u6642\u8a08\u3063\u307d\u3044\u3082\u306e
-int disp = 600;
+//\u5b9f\u88c5\u4e88\u5b9a\u306e\u6a5f\u80fd
+//\u5186\u306e\u7e01\u3092\u307c\u304b\u3057\u3066\u5149\u3063\u3066\u308b\u611f\u3058\u3092\u51fa\u3059\u3001\u3082\u3057\u304f\u306f\u5149\u3089\u305b\u308b
+//\u30bf\u30a4\u30de\u30fc\u6a5f\u80fd(\uff1f)
+//\u30ac\u30e9\u30ca\u3063\u307d\u3044\u30a8\u30d5\u30a7\u30af\u30c8(\uff1f\uff1f\uff1f\uff1f)
+
+
+int disp = 650;//\u30a6\u30a3\u30f3\u30c9\u30a6\u30b5\u30a4\u30ba
 float sRange = 250.0f;//\u79d2\u306e\u5186\u5468\u306e\u534a\u5f84
 float mRange = 180.0f;//\u5206\u306e\u5186\u5468\u306e\u534a\u5f84
 float hRange = 110.0f;
@@ -26,18 +32,18 @@ public void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	PFont uhr = loadFont("AgencyFB-Reg-25.vlw");
-  	textFont(uhr, 23);
+  	textFont(uhr, 24);
   	stroke(255, 255, 255);
   	smooth();
 }
 
 public void draw(){
 	background(0, 0, 0);
-	int pa = hour();
+	smooth();
 	float sec, min, hou;//\u79d2\u3001\u5206\u3001\u6642\u9593
-	int s, m ,h;//\u30b3\u30f3\u30d0\u30fc\u30c8\u3057\u3066\u8868\u793a\u3059\u308b\u305f\u3081\u306e	
-	float srad, mrad, hrad; //\u89d2\u5ea6\u683c\u7d0d\u7528
-	String s_s, m_s, h_s;
+	int s, m ,h;//\u30b3\u30f3\u30d0\u30fc\u30c8\u3057\u3066\u8868\u793a\u3059\u308b\u305f\u3081\u306e\u3084\u3064(\u79d2\u3001\u5206\u3001\u6642\u9593)	
+	float srad, mrad, hrad; //\u89d2\u5ea6\u683c\u7d0d\u7528(\u79d2\u3001\u5206\u3001\u6642\u9593)
+	String s_s, m_s, h_s;//\u30c6\u30ad\u30b9\u30c8\u5316\u3057\u305f\u6642\u9593(\u79d2\u3001\u5206\u3001\u6642\u9593)
 
 	//\u30c6\u30ad\u30b9\u30c8\u5909\u63db
 	//\u79d2\u6570\u304c1\u6841\u306e\u3068\u304d\u306f\u5148\u982d\u306b0\u3092\u3064\u3051\u308b
@@ -84,7 +90,7 @@ public void draw(){
 	noFill();
 	//\u79d2\u306e\u5024\u3092\u5186\u306e\u4e2d\u306b\u8868\u793a	
 	fill(0, 0, 0);
-	text(s_s + "s", sin(radians(srad + 90)) * sRange + hx - 7.5f, cos(radians(srad + 90)) * sRange + hy + 8.5f);
+	text(s_s + "s", sin(radians(srad + 90)) * sRange + hx - 15, cos(radians(srad + 90)) * sRange + hy + 8.5f);
 	noFill();
 	
 	//\u5206\u5186\u306e\u8868\u73fe
@@ -93,23 +99,23 @@ public void draw(){
 	noFill();
 	//\u5206\u306e\u5024\u3092\u5186\u306e\u4e2d\u306b\u8868\u793a
 	fill(0, 0, 0);
-	text(m_s + "m", sin(radians(mrad + 90)) * mRange + hx - 7.5f, cos(radians(mrad + 90)) * mRange + hy + 8.5f);
+	text(m_s + "m", sin(radians(mrad + 90)) * mRange + hx - 15, cos(radians(mrad + 90)) * mRange + hy + 8.5f);
 	noFill();
 
 	//\u6642\u9593\u5186\u306e\u8868\u73fe
 	fill(255, 255, 255);
-	ellipse(sin(radians(hrad + 90)) * hRange + hx, cos(radians(hrad + 90)) * hRange + hy, 60, 60);
+	ellipse(sin(radians(hrad + 180)) * hRange + hx, cos(radians(hrad + 180)) * hRange + hy, 60, 60);
 	noFill();
 	//\u6642\u9593\u306e\u5024\u3092\u5186\u306e\u4e2d\u306b\u8868\u793a
 	fill(0, 0, 0);
-	text(h_s + "h", sin(radians(hrad + 90)) * hRange + hx - 7.5f, cos(radians(hrad + 90)) * hRange + hy + 8.5f);
+	text(h_s + "h", sin(radians(hrad + 180)) * hRange + hx - 15, cos(radians(hrad + 180)) * hRange + hy + 8.5f);
 	noFill();
 
 	//AM\u30fbPM\u3092\u8868\u793a\u3059\u308b\u5186\u3092\u63cf\u753b
 	fill(255, 255, 255);
 	ellipse(hx, hy, 30 * 3, 30 * 3);
 	noFill();
-	if(pa <= 12){
+	if(hour() <= 12){
 		fill(0, 0, 0);
 		text(" PM", hx - 14, hy + 9);
 		noFill();

@@ -1,5 +1,11 @@
 //円を使ってぐるぐる回して時計っぽいもの
-int disp = 600;
+//実装予定の機能
+//・円の縁をぼかして光ってる感じを出す、もしくは光らせる
+//・タイマー機能(？)
+//・ガラナっぽいエフェクト(？？？？)
+//・3次元的な円運動
+
+int disp = 650;//ウィンドウサイズ
 float sRange = 250.0;//秒の円周の半径
 float mRange = 180.0;//分の円周の半径
 float hRange = 110.0;
@@ -10,18 +16,18 @@ void setup(){
 	colorMode(RGB);
 	background(0, 0, 0);
 	PFont uhr = loadFont("AgencyFB-Reg-25.vlw");
-  	textFont(uhr, 23);
+  	textFont(uhr, 24);
   	stroke(255, 255, 255);
   	smooth();
 }
 
 void draw(){
 	background(0, 0, 0);
-	int pa = hour();
+	smooth();
 	float sec, min, hou;//秒、分、時間
-	int s, m ,h;//コンバートして表示するための	
-	float srad, mrad, hrad; //角度格納用
-	String s_s, m_s, h_s;
+	int s, m ,h;//コンバートして表示するためのやつ(秒、分、時間)	
+	float srad, mrad, hrad; //角度格納用(秒、分、時間)
+	String s_s, m_s, h_s;//テキスト化した時間(秒、分、時間)
 
 	//テキスト変換
 	//秒数が1桁のときは先頭に0をつける
@@ -41,6 +47,7 @@ void draw(){
 		h_s = "0" + str(hour());
 	else
 		h_s = str(hour());
+
 
 	//時間の取得
 	sec = second();
@@ -68,7 +75,7 @@ void draw(){
 	noFill();
 	//秒の値を円の中に表示	
 	fill(0, 0, 0);
-	text(s_s + "s", sin(radians(srad + 90)) * sRange + hx - 7.5, cos(radians(srad + 90)) * sRange + hy + 8.5);
+	text(s_s + "s", sin(radians(srad + 90)) * sRange + hx - 15, cos(radians(srad + 90)) * sRange + hy + 8.5);
 	noFill();
 	
 	//分円の表現
@@ -77,23 +84,23 @@ void draw(){
 	noFill();
 	//分の値を円の中に表示
 	fill(0, 0, 0);
-	text(m_s + "m", sin(radians(mrad + 90)) * mRange + hx - 7.5, cos(radians(mrad + 90)) * mRange + hy + 8.5);
+	text(m_s + "m", sin(radians(mrad + 90)) * mRange + hx - 15, cos(radians(mrad + 90)) * mRange + hy + 8.5);
 	noFill();
 
 	//時間円の表現
 	fill(255, 255, 255);
-	ellipse(sin(radians(hrad + 90)) * hRange + hx, cos(radians(hrad + 90)) * hRange + hy, 60, 60);
+	ellipse(sin(radians(hrad + 180)) * hRange + hx, cos(radians(hrad + 180)) * hRange + hy, 60, 60);
 	noFill();
 	//時間の値を円の中に表示
 	fill(0, 0, 0);
-	text(h_s + "h", sin(radians(hrad + 90)) * hRange + hx - 7.5, cos(radians(hrad + 90)) * hRange + hy + 8.5);
+	text(h_s + "h", sin(radians(hrad + 180)) * hRange + hx - 15, cos(radians(hrad + 180)) * hRange + hy + 8.5);
 	noFill();
 
 	//AM・PMを表示する円を描画
 	fill(255, 255, 255);
 	ellipse(hx, hy, 30 * 3, 30 * 3);
 	noFill();
-	if(pa <= 12){
+	if(hour() <= 12){
 		fill(0, 0, 0);
 		text(" PM", hx - 14, hy + 9);
 		noFill();
