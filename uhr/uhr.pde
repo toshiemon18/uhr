@@ -25,7 +25,7 @@ void draw(){
 	smooth();
 	float sec, min, hou;//time varue(second, minute, hour)
 	int s, m ,h;//For convert data for uotput(second, minute, hour)
-	float srad, mrad, hrad; 
+	float srad, mrad, hrad;
 	String sec_s, min_s, hou_s;//converted data for strings(second, minute, hour)
 
 	//秒数が1桁のときは先頭に0をつける
@@ -38,14 +38,14 @@ void draw(){
 
 	//時間が1桁の時は先頭に0をつける
 	if(hour() < 10) { hou_s = "0" + str(hour()); }
-	else { hou_s = str(hour()); } 
+	else { hou_s = str(hour()); }
 
 
 	//Get the value of time
 	sec = second();
 	min = minute();
 	hou = hour() % 12.0;
-	
+
 	srad = (360 * (sec - 15) / 60.0) * -1;//秒の角度導出式
 	mrad = (360 * (min - 15) / 60.0) * -1;//分の角度導出式
 	hrad = (360 * hou / 12.0) * -1;//時間の角度導出式
@@ -68,7 +68,7 @@ void draw(){
 	fill(0, 0, 0);
 	text(s + "s", sin(radians(srad + 90)) * sRange + hx - 10, cos(radians(srad + 90)) * sRange + hy + 8.5);
 	noFill();
-	
+
 	//Display minute value into ellipse
 	fill(255, 255, 255);
 	ellipse(sin(radians(mrad + 90)) * mRange + hx, cos(radians(mrad + 90)) * mRange + hy, 60, 60);
@@ -93,12 +93,12 @@ void draw(){
 	noFill();
 	if(hour() <= 12){
 		fill(0, 0, 0);
-		text(" PM", hx - 14, hy + 9);
+		text(" AM", hx - 14, hy + 9);
 		noFill();
 	}
 	else{
 		fill(0, 0, 0);
-		text(" AM", hx - 14, hy + 9);
+		text(" PM", hx - 14, hy + 9);
 		noFill();
 	}
 	//println("Now time : "+h+":"+m+":"+s);
